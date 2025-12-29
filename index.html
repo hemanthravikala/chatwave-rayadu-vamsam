@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <meta name="theme-color" content="#0f172a">
+    <meta name="description" content="Private Family Chat for Rayaduvamsam">
+
+    <!-- Open Graph / Social -->
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="Rayaduvamsam Chat">
+    <meta property="og:description" content="Family Connect - Private & Secure-ish">
+    <meta property="og:image" content="https://cdn-icons-png.flaticon.com/512/3050/3050525.png">
+    <!-- Placeholder Icon -->
+
+    <title>Rayaduvamsam Chat</title>
+
+    <!-- PWA Manifest -->
+    <link rel="manifest" href="manifest.json">
+    <link rel="apple-touch-icon" href="https://cdn-icons-png.flaticon.com/512/3050/3050525.png">
+
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+    <!-- Icons -->
+    <link href="https://cdn.jsdelivr.net/npm/remixicon@3.5.0/fonts/remixicon.css" rel="stylesheet">
+
+    <!-- Supabase -->
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+
+    <!-- Crypto JS -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/crypto-js/4.1.1/crypto-js.min.js"></script>
+
+    <!-- Main Styles -->
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+    <!-- Background Animation -->
+    <div class="background-blobs">
+        <div class="blob blob-1"></div>
+        <div class="blob blob-2"></div>
+        <div class="blob blob-3"></div>
+    </div>
+
+    <!-- Login Screen -->
+    <div id="login-screen" class="screen">
+        <div class="glass-card login-card">
+            <div class="brand">
+                <i class="ri-chat-heart-fill"></i>
+                <h1>Rayaduvamsam</h1>
+                <p>Family Connect</p>
+            </div>
+
+            <form id="login-form">
+                <div class="input-group">
+                    <label>Who are you?</label>
+                    <input type="text" id="display-name" placeholder="E.g., Mom, Dad, Rohan" required
+                        autocomplete="off">
+                </div>
+
+                <div class="input-group">
+                    <label>Family Password</label>
+                    <input type="password" id="family-password" placeholder="Enter secret key" required>
+                </div>
+
+                <button type="submit" class="btn-primary">
+                    <span>Enter Chat</span>
+                    <i class="ri-arrow-right-line"></i>
+                </button>
+            </form>
+            <p id="login-error" class="error-msg"></p>
+
+            <a href="privacy.html" class="policy-link">Privacy Policy & Terms</a>
+        </div>
+    </div>
+
+    <!-- Chat Screen -->
+    <div id="chat-screen" class="screen">
+        <header class="chat-header">
+            <div class="header-left">
+                <div class="logo-small">
+                    <i class="ri-chat-heart-fill"></i>
+                </div>
+                <div class="header-info">
+                    <h2>Rayaduvamsam</h2>
+                    <span class="online-count"><span class="status-dot"></span> Family Connected</span>
+                </div>
+            </div>
+            <button id="logout-btn" class="icon-btn" title="Logout">
+                <i class="ri-logout-box-r-line"></i>
+            </button>
+        </header>
+
+        <div class="chat-container">
+            <div id="messages-list" class="messages-list">
+                <!-- Messages will appear here -->
+                <div class="message-date-divider"><span>Today</span></div>
+            </div>
+        </div>
+
+        <div class="chat-input-area">
+            <form id="message-form">
+                <label for="media-upload" class="upload-btn" title="Send Photo/Video">
+                    <i class="ri-add-line"></i>
+                </label>
+                <input type="file" id="media-upload" accept="image/*,video/*" hidden>
+
+                <input type="text" id="message-input" placeholder="Type a message..." autocomplete="off">
+
+                <button type="submit" class="send-btn">
+                    <i class="ri-send-plane-fill"></i>
+                </button>
+            </form>
+            <div id="upload-progress" class="upload-progress hidden">
+                <div class="spinner"></div> Uploading...
+            </div>
+        </div>
+    </div>
+
+    <!-- Scripts -->
+    <script type="module" src="config.js"></script>
+    <script type="module" src="app.js"></script>
+
+    <!-- Service Worker Registration -->
+    <script>
+        if ('serviceWorker' in navigator) {
+            window.addEventListener('load', () => {
+                navigator.serviceWorker.register('./sw.js')
+                    .then(registration => {
+                        console.log('SW registered:', registration);
+                    })
+                    .catch(error => {
+                        console.log('SW registration failed:', error);
+                    });
+            });
+        }
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,22 @@
+{
+  "name": "Rayaduvamsam Chat",
+  "short_name": "Rayaduvamsam",
+  "description": "Family Connect - Private Chat",
+  "start_url": "./index.html",
+  "display": "standalone",
+  "background_color": "#0f172a",
+  "theme_color": "#0f172a",
+  "orientation": "portrait-primary",
+  "icons": [
+    {
+      "src": "https://cdn.jsdelivr.net/npm/remixicon@3.5.0/fonts/remixicon.symbol.svg",
+      "sizes": "192x192",
+      "type": "image/svg+xml"
+    },
+    {
+      "src": "https://cdn.jsdelivr.net/npm/remixicon@3.5.0/fonts/remixicon.symbol.svg",
+      "sizes": "512x512",
+      "type": "image/svg+xml"
+    }
+  ]
+}
